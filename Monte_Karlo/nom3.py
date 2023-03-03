@@ -5,6 +5,8 @@ from matplotlib.patches import *
 from matplotlib.patches import Rectangle
 import numpy as np
 import scipy.stats as sps
+import turtle
+
 
 x_inside = []
 y_inside = []
@@ -24,7 +26,7 @@ def M(x_,y_,r):
     return m
 
 
-N = 100
+N = 10000
 R = 12
 
 rand_pos=(2*R) * np.random.random_sample(2*N)
@@ -37,13 +39,17 @@ print('Количество точек внутри круга M =',m)
 
 s = (m/N)*4*(R**2)
 print('Площадь круга S =',round(s,2))
-p = round((m/N)*4,3)
+p = round(s/(R**2),3)
 print('Значение pi =',p)
 
 
 fi = np.arange(0, 2*p, 0.01) # угол fi от 0 до 2pi с шагом 0.01
-plt.plot( (R+R*np.cos(fi)), (R+R*np.sin(fi)), lw=3)
+'''circle2 = plt.Circle((12, 12), 12, color='grey', clip_on=True)
+fig, ax = plt.subplots()
+ax.add_patch(circle2)'''
 plt.scatter(x_inside, y_inside, s=10, c="red")
 plt.scatter(x_outside, y_outside, s=10, c="black")
+plt.plot( (R+R*np.cos(fi)), (R+R*np.sin(fi)), lw=5)
+
 plt.axis('equal')
 plt.show()

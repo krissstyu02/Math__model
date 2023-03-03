@@ -38,7 +38,6 @@ n=12
 k=60
 
 x_=np.arange(0, 7, 0.1)
-print(x_)
 y_=function(x_,n)
 
 
@@ -50,8 +49,8 @@ amax=max(x_)
 bmin=min(y_)
 bmax=max(y_)
 
-a=round(amax)
-b=round(bmax)
+a=amax
+b=bmax
 
 
 x_rand=a * np.random.random_sample(N)
