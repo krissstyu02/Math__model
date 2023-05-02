@@ -329,42 +329,48 @@ L=Lq+lis
 W2=round( (evm_1_total_relax + evm_2_total_relax + evm_3_total_relax) / (
         evm_1_total_tasks + evm_2_total_tasks + evm_3_total_tasks),2)
 
-
+evm1_zan=round(evm_1_total_time - evm_1_total_relax,1)
 print('')
 print('Статистика ЭВМ 1:')
 print('Кол-во заявок:', evm_1_total_tasks)
-print('Общее время работы:', evm_1_total_time)
-print('Простой ЭВМ:', evm_1_total_relax)
-print('Коэффициент занятости:', (evm_1_total_time - evm_1_total_relax) / evm_1_total_time)
+print('Общее время работы:', round(evm_1_total_time,2),'мин')
+print('Время занятости ЭВМ:', round(evm1_zan,1),'мин')
+print('Время простоя ЭВМ:', round(evm_1_total_relax,1),'мин')
+print('Коэффициент занятости:', round(evm1_zan / evm_1_total_time,2)*100,'%')
+print('Коэффициент простоя:', round(evm_1_total_relax/ evm_1_total_time,2)*100,'%')
 # мы больше ждем заявок, чем они ждут в очереди, это можно увидеть во времени простоя
 queue_1 = float(abs(evm_1_total_time - evm_1_total_relax - evm_1_total_queue) / evm_1_total_tasks)
-print('Среднее время ожидания в очереди', queue_1)
+print('Среднее время ожидания в очереди', round(queue_1,1),'мин')
 
+evm2_zan=evm_2_total_time-evm_2_total_relax
 print('')
 print('Статистика ЭВМ 2:')
 print('Кол-во заявок:', evm_2_total_tasks)
-print('Общее время работы:', evm_2_total_time)
-print('Простой ЭВМ:', evm_2_total_relax)
-print('Коэффициент занятости:', (evm_2_total_time - evm_2_total_relax) / evm_2_total_time)
+print('Общее время работы:', round(evm_2_total_time,1),'мин')
+print('Время занятости ЭВМ:',round(evm2_zan),1,'мин')
+print('Время простоя ЭВМ:', round(evm_2_total_relax,1),'мин')
+print('Коэффициент занятости:', round(evm2_zan / evm_2_total_time,2)*100,'%')
+print('Коэффициент простоя:', round(evm_2_total_relax/ evm_2_total_time,2)*100,'%')
 # мы больше ждем заявок, чем они ждут в очереди, это можно увидеть во времени простоя
 queue_2 = float(abs(evm_2_total_time - evm_2_total_relax - evm_2_total_queue) / evm_2_total_tasks)
-print('Среднее время ожидания в очереди', queue_2)
+print('Среднее время ожидания в очереди', round(queue_2,2),'мин')
 
+evm3_zan=evm_3_total_time-evm_3_total_relax
 print('')
 print('Статистика ЭВМ 3:')
 print('Кол-во заявок:', evm_3_total_tasks)
-print('Общее время работы:', evm_3_total_time)
-print('Простой ЭВМ:', evm_3_total_relax)
-print('Коэффициент занятости:', (evm_3_total_time - evm_3_total_relax) / evm_3_total_time)
-# мы больше ждем заявок, чем они ждут в очереди, это можно увидеть во времени простоя
+print('Общее время работы:', round(evm_3_total_time,1),'мин')
+print('Время занятости ЭВМ:',round(evm3_zan),1,'мин')
+print('Время простоя ЭВМ:', round(evm_3_total_relax,1),'мин')
+print('Коэффициент занятости:', round(evm3_zan / evm_3_total_time,2)*100,'%')
+print('Коэффициент простоя:', round(evm_3_total_relax/ evm_3_total_time,2)*100,'%')
+#
 queue_3 = float(abs(evm_3_total_time - evm_3_total_relax - evm_3_total_queue) / evm_3_total_tasks)
-print('Среднее время ожидания в очереди', queue_3)
+print('Среднее время ожидания в очереди', round(queue_3,1))
 
 
 print('')
 print("Общая статистика работы системы:")
-print('Среднее время ожидания заявки:', (evm_1_total_relax + evm_2_total_relax + evm_3_total_relax) / (
-        evm_1_total_tasks + evm_2_total_tasks + evm_3_total_tasks))
 print('Время работы системы:', round(events_sorted[0].time - events_sorted[len(events_sorted) - 1].time,2),'мин.')
 print('Среднее время ожидания в очереди', round (((queue_1 + queue_2 + queue_3) / 3.0),2),'мин.')
 print('Среднее число каналов в обслуживании=', Cs)
